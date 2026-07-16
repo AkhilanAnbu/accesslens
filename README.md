@@ -6,11 +6,11 @@ Many websites describe a location only as “accessible” without explaining th
 
 ## Live application
 
-**Website:** REPLACE BEFORE SUBMISSION — add the public Render URL
+**Website:** https://accesslens-akhilan-3pk7.onrender.com/
 
 ## Demonstration video
 
-**Video:** REPLACE BEFORE SUBMISSION — add the public narrated video URL
+**Video:** 
 
 ## Authors
 
