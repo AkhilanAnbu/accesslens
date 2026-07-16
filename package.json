@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "install:all": "npm install --prefix server && npm install --prefix client",
+    "install:all": "npm install --prefix server && npm install --include=dev --prefix client",
     "dev": "npm --prefix server run dev",
     "build": "npm --prefix client run build",
     "start": "npm --prefix server start",
@@ -14,6 +14,6 @@
     "check": "npm run lint && npm run build"
   },
   "engines": {
-    "node": ">=20"
+    "node": "22.x"
   }
 }
