@@ -1,0 +1,145 @@
+.place-card {
+  position: relative;
+  display: flex;
+  min-height: 420px;
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid rgba(143, 29, 44, 0.14);
+  border-radius: 18px;
+  background: white;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.place-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.place-card__accent {
+  height: 7px;
+  background: var(--red);
+}
+
+.place-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 20px 22px 0;
+}
+
+.category-chip,
+.verification {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-size: 0.71rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.category-chip {
+  color: var(--red-deep);
+  background: var(--blush);
+}
+
+.verification {
+  color: #87683b;
+  background: #fff4d8;
+}
+
+.verification--verified {
+  color: #196045;
+  background: #e3f6ed;
+}
+
+.place-card__body {
+  flex: 1;
+  padding: 20px 22px;
+}
+
+.place-card h3 {
+  margin: 0 0 9px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.place-card__address {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 15px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.place-card__address span {
+  color: var(--red);
+}
+
+.place-card__description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0 0 18px;
+  color: var(--muted-strong);
+  font-size: 0.9rem;
+  line-height: 1.58;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 8px;
+  border: 1px solid #ead9d7;
+  border-radius: 8px;
+  color: var(--muted-strong);
+  background: #fffaf7;
+  font-size: 0.73rem;
+  font-weight: 700;
+}
+
+.feature-list li span {
+  color: #217653;
+}
+
+.feature-list .feature-list__more {
+  border-color: transparent;
+  color: var(--red-deep);
+  background: transparent;
+}
+
+.place-card__footer {
+  padding: 16px 22px 20px;
+  border-top: 1px solid rgba(143, 29, 44, 0.1);
+}
+
+.card-link {
+  padding: 0;
+  border: 0;
+  color: var(--red-deep);
+  background: transparent;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 850;
+  cursor: pointer;
+}

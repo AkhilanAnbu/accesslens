@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: accesslens-akhilan
+    runtime: node
+    plan: free
+    buildCommand: npm run install:all && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DATABASE_NAME
+        value: accesslens
