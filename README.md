@@ -359,7 +359,7 @@ The interface uses:
 
 ## AI-use disclosure
 
-Generative AI was used as a development assistant for initial structure, debugging and documentation support. The team reviewed, tested, modified the entire working model of this project.
+Generative AI was used as a development assistant for initial structure, debugging, documentation support and to make this README.md file. The team reviewed, tested, modified the entire working model of this project.
 
 ## License
 
