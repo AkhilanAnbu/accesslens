@@ -1,0 +1,7 @@
+.report-directory .page-hero {
+  background: var(--red-deep);
+}
+
+.skeleton-card--report {
+  min-height: 300px;
+}
