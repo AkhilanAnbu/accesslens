@@ -27,3 +27,6 @@ export const ACCESSIBILITY_FEATURES = [
 ];
 
 export const VERIFICATION_STATUSES = ["Pending", "Verified"];
+export const REPORT_BARRIER_TYPES = ["Step or stairs","Broken elevator","Blocked ramp","Narrow entrance","Inaccessible restroom","Missing signage","Parking barrier","Seating obstruction","Other"];
+export const REPORT_SEVERITIES = ["Low", "Medium", "High", "Critical"];
+export const REPORT_STATUSES = ["Open", "In Review", "Fixed", "Not Applicable"];

@@ -1,7 +1,13 @@
 import "dotenv/config";
 import { MongoClient, ObjectId } from "mongodb";
 import { hashPassword } from "../src/utils/password.js";
-import { ACCESSIBILITY_FEATURES, PLACE_CATEGORIES } from "../src/utils/constants.js";
+import {
+  ACCESSIBILITY_FEATURES,
+  PLACE_CATEGORIES,
+  REPORT_BARRIER_TYPES,
+  REPORT_SEVERITIES,
+  REPORT_STATUSES
+} from "../src/utils/constants.js";
 
 const uri = process.env.MONGO_URI;
 const databaseName = process.env.DATABASE_NAME || "accesslens";
@@ -96,11 +102,63 @@ const descriptions = [
   "The listing contains accessibility details gathered from recent visits and updates."
 ];
 
+const reportDescriptions = {
+  "Step or stairs": [
+    "Two unmarked steps at the main entrance with no ramp alternative nearby.",
+    "A single step at the doorway makes wheeled entry difficult without help."
+  ],
+  "Broken elevator": [
+    "The only elevator to the upper floor was out of service during my visit.",
+    "Elevator display showed an error and the doors would not open."
+  ],
+  "Blocked ramp": [
+    "The ramp was partially blocked by stored equipment and hard to use.",
+    "Delivery boxes were left on the ramp, leaving too little clearance."
+  ],
+  "Narrow entrance": [
+    "The entrance doorway is too narrow for a standard wheelchair to pass comfortably.",
+    "A turnstile at the entry point does not leave room for a mobility device."
+  ],
+  "Inaccessible restroom": [
+    "The accessible restroom was locked and no staff member had a key available.",
+    "Grab bars in the restroom were loose and the stall was too small to turn in."
+  ],
+  "Missing signage": [
+    "There is no signage directing visitors to the step-free entrance.",
+    "Accessible routes are not marked, so first-time visitors get lost."
+  ],
+  "Parking barrier": [
+    "Accessible parking spaces were occupied by vehicles without permits.",
+    "The accessible parking bay has no dropped curb connecting it to the entrance."
+  ],
+  "Seating obstruction": [
+    "Movable chairs crowd the aisle and block the wheelchair seating area.",
+    "The reserved accessible seating was being used for storage."
+  ],
+  Other: [
+    "Lighting at the entrance is very low, which makes the step-free route hard to find.",
+    "Background noise made it difficult to use the space with a hearing device."
+  ]
+};
+
+const suggestedFixes = [
+  "Install a compliant ramp beside the existing steps.",
+  "Add clear signage pointing to the step-free entrance.",
+  "Schedule regular maintenance so the elevator stays in service.",
+  "Keep the ramp and accessible routes clear of stored items.",
+  "Repair the grab bars and confirm the accessible restroom stays unlocked.",
+  "Reserve and enforce the accessible parking spaces.",
+  "Widen the entry path or provide an alternative accessible door.",
+  "Keep the designated accessible seating clear during busy hours.",
+  ""
+];
+
 async function run() {
   await client.connect();
   const db = client.db(databaseName);
   const usersCollection = db.collection("users");
   const placesCollection = db.collection("places");
+  const reportsCollection = db.collection("reports");
 
   if (reset) {
     await Promise.all([
@@ -169,17 +227,59 @@ async function run() {
   });
   await placesCollection.insertMany(places);
 
+  const statusWeights = [
+    ["Open", 0.55],
+    ["In Review", 0.2],
+    ["Fixed", 0.18],
+    ["Not Applicable", 0.07]
+  ];
+  function pickStatus() {
+    const roll = random();
+    let cumulative = 0;
+    for (const [value, weight] of statusWeights) {
+      cumulative += weight;
+      if (roll <= cumulative) {
+        return value;
+      }
+    }
+    return REPORT_STATUSES[0];
+  }
+
+  const reports = Array.from({ length: 1600 }, () => {
+    const place = pick(places);
+    const barrierType = pick(REPORT_BARRIER_TYPES);
+    const createdAt = new Date(Date.now() - Math.floor(random() * 200) * 86400000);
+    const updatedAt = new Date(createdAt.getTime() + Math.floor(random() * 30) * 86400000);
+
+    return {
+      _id: new ObjectId(),
+      placeId: place._id,
+      barrierType,
+      severity: pick(REPORT_SEVERITIES),
+      description: pick(reportDescriptions[barrierType]),
+      suggestedFix: pick(suggestedFixes),
+      status: pickStatus(),
+      createdBy: pick(demoUsers)._id,
+      createdAt,
+      updatedAt
+    };
+  });
+  await reportsCollection.insertMany(reports);
+
   await Promise.all([
     usersCollection.createIndex({ email: 1 }, { unique: true }),
     placesCollection.createIndex({ name: "text", "address.city": "text" }),
     placesCollection.createIndex({ category: 1, verificationStatus: 1 }),
-    placesCollection.createIndex({ createdBy: 1, updatedAt: -1 })
+    placesCollection.createIndex({ createdBy: 1, updatedAt: -1 }),
+    reportsCollection.createIndex({ placeId: 1, createdAt: -1 }),
+    reportsCollection.createIndex({ status: 1, severity: 1 }),
+    reportsCollection.createIndex({ createdBy: 1, createdAt: -1 })
   ]);
 
-  console.log("AccessLens Akhilan seed complete.");
+  console.log("AccessLens seed complete.");
   console.log(`Users: ${demoUsers.length}`);
   console.log(`Places: ${places.length}`);
-  console.log("Accessibility reports: 0 (reserved for Santhosh)");
+  console.log(`Accessibility reports: ${reports.length}`);
   console.log("Demo password for every seeded account: Access123!");
   await client.close();
 }
