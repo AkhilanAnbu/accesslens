@@ -6,7 +6,7 @@ import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
 import Hero from "./components/Hero.jsx";
 import PlaceDirectory from "./components/PlaceDirectory.jsx";
-import ReportsPlaceholder from "./components/ReportsPlaceholder.jsx";
+import ReportDirectory from "./components/ReportDirectory.jsx";
 import Toast from "./components/Toast.jsx";
 import "./App.css";
 
@@ -108,7 +108,13 @@ export default function App() {
           />
         ) : null}
 
-        {activeView === "reports" ? <ReportsPlaceholder /> : null}
+        {activeView === "reports" ? (
+  <ReportDirectory
+    user={user}
+    onRequireAuth={() => setAuthOpen(true)}
+    onNotify={notify}
+  />
+) : null}
 
         {activeView === "account" ? (
           <AccountPanel

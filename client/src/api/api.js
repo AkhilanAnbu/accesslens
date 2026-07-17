@@ -39,5 +39,13 @@ export const api = {
   createPlace: (data) => request("/places", { method: "POST", body: JSON.stringify(data) }),
   updatePlace: (id, data) =>
     request(`/places/${id}`, { method: "PUT", body: JSON.stringify(data) }),
-  deletePlace: (id) => request(`/places/${id}`, { method: "DELETE" })
+  deletePlace: (id) => request(`/places/${id}`, { method: "DELETE" }),
+  getReports: (parameters) => request(`/reports?${toQuery(parameters)}`),
+  getReport: (id) => request(`/reports/${id}`),
+  createReport: (data) => request("/reports", { method: "POST", body: JSON.stringify(data) }),
+  updateReport: (id, data) =>
+    request(`/reports/${id}`, { method: "PUT", body: JSON.stringify(data) }),
+  deleteReport: (id) => request(`/reports/${id}`, { method: "DELETE" }),
+  updateReportStatus: (id, status) =>
+    request(`/reports/${id}/status`, { method: "PATCH", body: JSON.stringify({ status }) })
 };

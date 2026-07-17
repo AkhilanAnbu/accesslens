@@ -5,6 +5,7 @@ import session from "express-session";
 import { configurePassport, passport } from "./config/passport.js";
 import { createAuthRouter } from "./routes/authRoutes.js";
 import { createPlaceRouter } from "./routes/placeRoutes.js";
+import { createReportRouter } from "./routes/reportRoutes.js";
 
 const currentFile = fileURLToPath(import.meta.url);
 const currentDirectory = path.dirname(currentFile);
@@ -51,6 +52,7 @@ export function createApp(db) {
   });
   app.use("/api/auth", createAuthRouter(db));
   app.use("/api/places", createPlaceRouter(db));
+  app.use("/api/reports", createReportRouter(db));
 
   app.use("/api", (_req, res) => {
     res.status(404).json({ error: "API route not found." });

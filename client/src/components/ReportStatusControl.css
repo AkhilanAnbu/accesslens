@@ -1,0 +1,40 @@
+.status-control {
+  margin-top: 22px;
+  padding: 20px 22px;
+  border: 1px solid rgba(143, 29, 44, 0.14);
+  border-radius: 16px;
+  background: var(--cream);
+}
+
+.status-control h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: -0.03em;
+}
+
+.status-control__hint {
+  margin: 0 0 14px;
+  color: var(--muted-strong);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.status-control__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.status-control__row select {
+  min-height: 42px;
+  min-width: 180px;
+  padding: 9px 10px;
+  border: 1px solid #dcc5c3;
+  border-radius: 10px;
+  outline: 0;
+  color: var(--ink);
+  background: #fffdfb;
+  font: inherit;
+  font-weight: 500;
+}

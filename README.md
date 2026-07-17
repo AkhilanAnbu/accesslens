@@ -202,7 +202,7 @@ Install:
 ### 1. Clone the repository
 
 ```bash
-git clone REPLACE_BEFORE_SUBMISSION_WITH_GITHUB_URL
+git clone https://github.com/AkhilanAnbu/accesslens.git
 cd accesslens-project3
 ```
 
