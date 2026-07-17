@@ -10,7 +10,7 @@ Many websites describe a location only as “accessible” without explaining th
 
 ## Demonstration video
 
-**Video:** 
+**Video:** https://www.youtube.com/watch?v=jVKq9md3Hjo
 
 ## Authors
 
