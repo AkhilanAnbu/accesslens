@@ -109,12 +109,8 @@ export default function App() {
         ) : null}
 
         {activeView === "reports" ? (
-  <ReportDirectory
-    user={user}
-    onRequireAuth={() => setAuthOpen(true)}
-    onNotify={notify}
-  />
-) : null}
+          <ReportDirectory user={user} onRequireAuth={() => setAuthOpen(true)} onNotify={notify} />
+        ) : null}
 
         {activeView === "account" ? (
           <AccountPanel
