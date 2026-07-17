@@ -115,7 +115,7 @@ export default function AuthModal({ onClose, onAuthenticated }) {
       </form>
 
       <p className="demo-note">
-        Seeded demo: <strong>akhilan@accesslens.demo</strong> / <strong>Access123!</strong>
+        New to AccessLens? Create an account to add places and accessibility reports.
       </p>
     </Modal>
   );
