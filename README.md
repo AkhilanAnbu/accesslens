@@ -12,6 +12,12 @@ Many websites describe a location only as “accessible” without explaining th
 
 **Video:** https://www.youtube.com/watch?v=jVKq9md3Hjo
 
+## Design document
+
+The complete project design document, including personas, user stories, architecture, data models, API planning, and design mockups, is available here:
+
+[View the AccessLens design document](docs/design-document.md)
+
 ## Authors
 
 - **Akhilan Anbu** — Place Directory full stack
