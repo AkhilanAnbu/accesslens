@@ -167,7 +167,7 @@ The frontend hides unavailable actions, but the backend independently verifies o
 ## Project structure
 
 ```text
-accesslens-project3/
+accesslens/
 ├── client/
 │   ├── public/
 │   └── src/
@@ -250,7 +250,7 @@ Never commit `server/.env`.
 npm run seed -- --reset
 ```
 
-The final seed should create at least 1,000 synthetic records across the application.
+The seed creates 4 demo users, 1,005 places, and 1,600 accessibility reports.
 
 ### 5. Run locally
 
@@ -365,7 +365,7 @@ The interface uses:
 
 ## AI-use disclosure
 
-Generative AI was used as a development assistant for initial structure, debugging, documentation support and to make this README.md file. The team reviewed, tested, modified the entire working model of this project.
+Generative AI was used for limited brainstorming, debugging assistance, and documentation drafting. Both team members reviewed, modified, understood, and tested all submitted code and documentation. 
 
 ## License
 
