@@ -354,6 +354,93 @@ The interface uses:
 - Text labels in addition to icons.
 - High-contrast red, cream, and dark-text styling.
 
+## Design, Accessibility and Usability Improvements
+
+For the final iteration of AccessLens, the application was refined using design principles and feedback gathered through a **six-participant usability study**, with three participants testing each project member's feature.
+
+### Design Improvements
+
+The interface was refined to create a clearer and more consistent experience across the Place Directory and Accessibility Reports features.
+
+* Maintained a consistent **red, cream, and gold** visual theme throughout the application.
+* Improved visual hierarchy so important headings, controls, and actions are easy to identify.
+* Kept spacing, cards, filters, forms, and buttons consistent throughout the interface.
+* Used clear visual differences between primary actions, secondary actions, and management controls.
+* Improved readability of muted and secondary text.
+
+### Typography
+
+The final design uses a custom typeface pairing instead of relying on default system fonts:
+
+* **Fraunces** — used for headings and display text.
+* **Inter** — used for body text, navigation, forms, filters, and other interface elements.
+
+This pairing improves readability while giving AccessLens a more distinct and consistent visual identity.
+
+### Accessibility and Ownership
+
+AccessLens uses role-based controls to help users understand which actions are available to them.
+
+* Place creators can manage their own place listings.
+* Report authors can manage their own accessibility reports.
+* Place owners can manage the status of reports related to their listings.
+* Management controls are shown based on the authenticated user's permissions.
+* Passport authentication is used to support ownership checks throughout the application.
+
+### Usability Study
+
+A usability study was conducted with **six participants** across the two main areas of AccessLens.
+
+**Accessibility Reports — Santhosh Malarvannan**
+
+Participants tested:
+
+* Finding accessibility information.
+* Submitting an accessibility report.
+* Filtering reports by severity and status.
+* Opening report details.
+* Understanding place-owner report controls.
+
+All three participants successfully completed their assigned tasks without facilitator assistance. Ratings were consistently high, with mostly **4/5 and 5/5 scores** for effectiveness and intuitiveness.
+
+**Place Directory — Akhilan Anbu**
+
+Participants tested:
+
+1. Finding a place with a required accessibility feature.
+2. Creating a new place listing.
+3. Editing their own place listing.
+4. Deleting their own place listing.
+5. Finding a place's map or website information.
+
+All three participants completed every task successfully and rated **every task 5/5 for ease of use**. The overall ease-of-use rating was also **5/5 for all three participants**.
+
+### Usability Study Results
+
+Across all six participants:
+
+* All participants successfully completed their assigned workflows.
+* No functional blocker was encountered during testing.
+* Search and filtering were easy for participants to understand.
+* Place creation, editing, and deletion were completed successfully.
+* Accessibility report creation and filtering were completed successfully.
+* Participants were able to understand the overall purpose of AccessLens quickly.
+* The final interface retained the core navigation and CRUD workflows that performed strongly during testing.
+
+### Usability Study Recordings
+
+**Akhilan Anbu — Place Directory Study**
+
+https://www.youtube.com/watch?v=569klI87G6M
+
+**Santhosh Malarvannan — Accessibility Reports Study**
+
+* Jerith Gurusubburam: https://www.youtube.com/watch?v=Pyi1UAbs9Zo
+* Aravindhan V: https://www.youtube.com/watch?v=rjiB3VrBBZE
+* Bharani Raj Thiagarajan: https://www.youtube.com/watch?v=rm640dakJoQ
+
+The complete usability study report documents the participant tasks, observations, Likert-scale results, and final design iteration.
+
 ## Code organization
 
 - Each major React component is stored in its own file.
