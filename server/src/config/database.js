@@ -24,7 +24,6 @@ async function createIndexes(db) {
     db.collection("places").createIndex({ name: "text", "address.city": "text" }),
     db.collection("places").createIndex({ category: 1, verificationStatus: 1 }),
     db.collection("places").createIndex({ createdBy: 1, updatedAt: -1 }),
-    db.collection("places").createIndex({ createdBy: 1, updatedAt: -1 }),
     db.collection("reports").createIndex({ placeId: 1, createdAt: -1 }),
     db.collection("reports").createIndex({ status: 1, severity: 1 }),
     db.collection("reports").createIndex({ createdBy: 1, createdAt: -1 })
