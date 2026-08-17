@@ -56,34 +56,36 @@ export function createReportRouter(db) {
       const sort = cleanText(req.query.sort, 30);
       const mine = req.query.mine === "true";
 
-      const match = {};
+      const reportMatch = {};
       if (barrierType && REPORT_BARRIER_TYPES.includes(barrierType)) {
-        match.barrierType = barrierType;
+        reportMatch.barrierType = barrierType;
       }
       if (severity && REPORT_SEVERITIES.includes(severity)) {
-        match.severity = severity;
+        reportMatch.severity = severity;
       }
       if (status && REPORT_STATUSES.includes(status)) {
-        match.status = status;
-      }
-      if (category && PLACE_CATEGORIES.includes(category)) {
-        match["place.category"] = category;
-      }
-      if (search) {
-        const regex = new RegExp(escapeRegex(search), "i");
-        match.$or = [
-          { description: regex },
-          { suggestedFix: regex },
-          { "place.name": regex },
-          { "place.address.city": regex }
-        ];
+        reportMatch.status = status;
       }
       if (mine) {
         if (!req.user) {
           res.status(401).json({ error: "Please sign in to view your reports." });
           return;
         }
-        match.createdBy = req.user._id;
+        reportMatch.createdBy = req.user._id;
+      }
+
+      const placeMatch = {};
+      if (category && PLACE_CATEGORIES.includes(category)) {
+        placeMatch["place.category"] = category;
+      }
+      if (search) {
+        const regex = new RegExp(escapeRegex(search), "i");
+        placeMatch.$or = [
+          { description: regex },
+          { suggestedFix: regex },
+          { "place.name": regex },
+          { "place.address.city": regex }
+        ];
       }
 
       const sortOptions = {
@@ -94,6 +96,7 @@ export function createReportRouter(db) {
       const selectedSort = sortOptions[sort] || sortOptions.recent;
 
       const basePipeline = [
+        { $match: reportMatch },
         {
           $lookup: {
             from: "places",
@@ -103,7 +106,7 @@ export function createReportRouter(db) {
           }
         },
         { $set: { place: { $first: "$place" } } },
-        { $match: match }
+        { $match: placeMatch }
       ];
 
       const [items, countResult] = await Promise.all([
