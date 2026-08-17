@@ -431,7 +431,7 @@ Across all six participants:
 
 **Akhilan Anbu — Place Directory Study**
 
-https://www.youtube.com/watch?v=569klI87G6M
+* All participants combined: https://www.youtube.com/watch?v=569klI87G6M
 
 **Santhosh Malarvannan — Accessibility Reports Study**
 
