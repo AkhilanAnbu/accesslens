@@ -441,6 +441,8 @@ Across all six participants:
 
 The complete usability study report documents the participant tasks, observations, Likert-scale results, and final design iteration.
 
+FINAL VIDEO: https://youtu.be/sviVpRtBw8w (explaining accessability and usability changes for final project)
+
 ## Code organization
 
 - Each major React component is stored in its own file.
