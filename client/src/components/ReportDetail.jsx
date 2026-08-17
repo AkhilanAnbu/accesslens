@@ -7,7 +7,14 @@ import ReportStatusControl from "./ReportStatusControl.jsx";
 import "./ReportCard.css";
 import "./ReportDetail.css";
 
-export default function ReportDetail({ reportId, user, onEdit, onDelete, onNotify, onStatusChanged }) {
+export default function ReportDetail({
+  reportId,
+  user,
+  onEdit,
+  onDelete,
+  onNotify,
+  onStatusChanged
+}) {
   const [report, setReport] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -131,11 +138,7 @@ export default function ReportDetail({ reportId, user, onEdit, onDelete, onNotif
       ) : null}
 
       {isPlaceOwner ? (
-        <ReportStatusControl
-          report={report}
-          onUpdated={handleStatusUpdated}
-          onNotify={onNotify}
-        />
+        <ReportStatusControl report={report} onUpdated={handleStatusUpdated} onNotify={onNotify} />
       ) : null}
     </div>
   );
