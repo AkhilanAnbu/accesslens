@@ -3,9 +3,9 @@ async function request(path, options = {}) {
     credentials: "include",
     headers: {
       ...(options.body ? { "Content-Type": "application/json" } : {}),
-      ...options.headers
+      ...headers
     },
-    ...options
+    ...restOptions
   });
 
   if (response.status === 204) {
